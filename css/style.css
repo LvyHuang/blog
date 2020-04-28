@@ -1,0 +1,76 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.banner{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+}
+.banner img{
+    width: 100%;
+    height: 100%;
+    float: left;
+    overflow: hidden;
+}
+.describe{
+    color: aliceblue;
+    font-size: 40px;
+    font-weight: bold;
+    position: absolute;
+    left: 150px;
+    bottom: 100px;
+}
+.hello{
+    position: absolute;
+    left: 250px;
+    top: 80px;
+    font-size: 42px;
+    font-weight: bold;
+    color: white;
+}
+.personal-information{
+    width: 500px;
+    height: 300px;
+    padding: 70px;
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -150px;
+    margin-left: -200px;
+    background: rgba(0,0,0,.2);
+    border-radius: 20px;
+}
+.personal-information span{
+    width: 90px;
+    display: inline-block;
+    color: #363035;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+.personal-information input{
+    width: 250px;
+    height: 30px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+    padding: 4px;
+    box-sizing: border-box;
+}
+.btn{
+    width: 80px;
+    height: 30px;
+    margin-top: 20px;
+    margin-left: 130px;
+    border-radius: 5px;
+    background: orangered;
+    color: white;
+    font-weight: bold;
+    border: none;
+}
+.btn:hover{
+    background: red;
+}

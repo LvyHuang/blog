@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>网页开发方式-从静态……</title>
+    <link rel="stylesheet" href="css/bg.css">    <!--    狗狗和背景图-->
+    <link rel="stylesheet" href="css/describe.css">
+</head>
+<body>
+    <div class="logo">
+        <div class="inner"></div>
+        <div class="middle"></div>
+        <div class="outer"></div>
+        <div class="image"></div>
+    </div>
+    <div class="tit">那年夏天</div>
+    <header>
+        <div class="header-center">
+            <a href="https://www.cnblogs.com/">博客园</a>
+            <a href="index.html">首页</a>
+            <a href="https://account.cnblogs.com/signin?returnUrl=http%3a%2f%2fi.cnblogs.com%2fEditPosts.aspx%3fopt%3d1">新随笔</a>
+            <a href="https://account.cnblogs.com/signin?returnUrl=http%3a%2f%2fi.cnblogs.com%2fEditPosts.aspx%3fopt%3d1">联系</a>
+            <a href="http://feed.cnblogs.com/blog/u/182440/rss/">订阅</a>
+            <a href="https://account.cnblogs.com/signin?returnUrl=http%3a%2f%2fi.cnblogs.com%2f">管理</a>
+        </div>
+    </header>
+    <article class="main">
+        <div class="main-title">网页开发方式-从静态页面到服务端渲染 </div>
+        <div class="desc-content">
+            <div class="desc">前言</div>
+            <div class="content">
+                网页的最初形式就是一个个静态页面，例如我们写了一个 html 文件，放在服务器上就可以供用户访问了。 而后网站变得需要展示更多的内容，
+                让内容更加动态，因此需要接入数据库，配合数据库的内容做展示，于是诞生了 html 模板引擎，用于把动态的数据插入到 html 中，叫做动态页面，
+                后面我会叫它为传统的动态页面，例如 java 的 Jsp，php 的 Smarty 和 node 的 Jade 等。 再后来伴随浏览器的发展，网页交互变得越来越复杂
+                等一系列原因，前端技术突飞猛进，诞生了前后端分离的单页面应用，简称 spa（single page application），最流行的莫过于 react、angular
+                和 vue了，三大框架一统江湖。 单页面应用也有其自身的缺陷，seo不友好、首次加载较慢，但是大家又不可能回过头去使用模版引擎，于是乎基于单
+                页面应用框架的 SSR（sever side rendering）服务端渲染应运而生，例如基于 vue 的 nuxt.js 和基于 react 的 next.js。 它不仅使我们统一了
+                技术栈，还解决了单页面本身的一些问题，以至于我们能在某些场景下得到满足。
+            </div>
+            <div class="content">
+                基于整个发展史，我在这里暂且把网页的开发方式划分为这四个类型：传统的静态页面、传统的动态页面、单页面、单页面的服务端渲染。
+            </div>
+            <div class="content">接下来我们从下面几个方面，来谈一谈每一种开发方式</div>
+            <ul class="list">
+                <li>主要涉及技术</li>
+                <li>实现和执行过程</li>
+                <li>开发效率</li>
+                <li>加载速度</li>
+                <li>服务端压力</li>
+                <li>应用场景</li>
+            </ul>
+        </div>
+        <div class="part-one">
+            <h2 class="heading">传统的静态页面</h2>
+            <h3 class="sub-title">1.主要涉及技术</h3>
+            <p class="content">html-css-js</p>
+            <h3 class="sub-title">2.实现和执行过程</h3>
+            <p class="content">将静态资源存放在服务器，用户通过 url 访问静态资源并加载到浏览器，最后渲染</p>
+            <h3 class="sub-title">3.开发效率</h3>
+            <p class="content">引入资源少，开发速度快，对于复杂应用开发效率极低</p>
+            <h3 class="sub-title">4.加载速度</h3>
+            <p class="content">服务器只需要返回静态资源，响应流程简单，速度非常快</p>
+            <h3 class="sub-title">5.服务器压力</h3>
+            <p class="content">服务器压力小，占用很少资源</p>
+            <h3 class="sub-title">6.应用场景</h3>
+            <p class="content">仅支持展示少量信息的网页，交互较少，比如简单的介绍页面，官方网站，个人简历网页等。</p>
+        </div>
+        <div class="part-two">
+            <h2 class="heading">传统的动态页面</h2>
+            <h3 class="sub-title">1.主要涉及技术</h3>
+            <p class="content">html-css-js、ajax、数据库、后端程序及相关模版引擎</p>
+            <h3 class="sub-title">2.实现和执行过程</h3>
+            <p class="content">运行后端程序并监听路由（请求路径），用户访问对应路由后端渲染对应的页面，执行相关 sql 并返回数据，
+                模版引擎将数据插入到 html 节点中，返回 html，浏览器渲染。</p>
+            <h3 class="sub-title">3.开发效率</h3>
+            <p class="content">开发效率较高，mvc模式，需要搭建耦合的前后端架构，模版引擎后端渲染部分和前端 ajax 通过 js 渲染部分需要
+                额外编码处理。如果后端迁移语言，几乎等于重写。前后端职责并不是特别分明，后端程序员也可以修改模板。</p>
+            <h3 class="sub-title">4.加载速度</h3>
+            <p class="content">服务端程序需要监听路由，同步请求接口，渲染模板，响应流程较多，加载速度较快。</p>
+            <h3 class="sub-title">5.服务器压力</h3>
+            <p class="content">服务器需要启动后端程序，后端程序需要请求数据和渲染页面，占用内存和计算资源较多。</p>
+            <h3 class="sub-title">6.应用场景</h3>
+            <p class="content">内容丰富，复杂交互的动态网页，适合全栈开发。也有一种动静结合的应用场景，后端程序根据路由，把页面动态渲染后
+                生成一个静态的页面，定期更新此静态页面，这样用户访问的时候，就直接访问的是静态页面，能很大程度减少服务器压力。缺点是更新不及时,
+                是一种类似缓存的策略，使用此方式还是根据应用场景综合评估。</p>
+        </div>
+        <div class="part-three">
+            <h2 class="heading">单页面</h2>
+            <h3 class="sub-title">1.主要涉及技术</h3>
+            <p class="content">html-css-js、单页面框架、ajax</p>
+            <h3 class="sub-title">2.实现和执行过程</h3>
+            <p class="content">服务器直接返回静态资源，浏览器加载执行相关 js，单页面框架判断路由执行对应 js 代码，所有请求异步，完全通过 js
+                插入和修改 dom ，不需要服务端做任何事情。</p>
+            <h3 class="sub-title">3.开发效率</h3>
+            <p class="content">开发效率较高，mvvm模式，前后端分离完全独立的纯前端应用，前后端职责分明互不干涉。</p>
+            <h3 class="sub-title">4.加载速度</h3>
+            <p class="content">无静态资源缓存情况下，首次加载速度较慢，因为需要经历静态资源下载、js 完全执行、异步数据返回。
+                首次加载完成后页面路由被前端控制，切换非常快。缓存静态资源以后，首次加载速度也非常快。</p>
+            <h3 class="sub-title">5.服务器压力</h3>
+            <p class="content">服务器压力很小，只需要返回静态资源，网页逻辑、路由和计算全部分摊给无数客户端。</p>
+            <h3 class="sub-title">6.应用场景</h3>
+            <p class="content">内容丰富、数据量大、复杂交互的动态网页。大部分场景都能满足，是目前最流行的方式。</p>
+        </div>
+        <div class="part-four">
+            <h2 class="heading">单页面的服务端渲染</h2>
+            <p class="content">注：之所以没有直接使用 SSR（服务端渲染）来表示，是因为动态网页也可以叫服务端渲染。</p>
+            <h3 class="sub-title">1.主要涉及技术</h3>
+            <p class="content">html-css-js、单页面框架、ajax、nodejs、基于node和单页面框架自行实现核心逻辑 或者 使用三方框架如nextjs、nuxtjs</p>
+            <h3 class="sub-title">2.实现和执行过程</h3>
+            <p class="content">用户访问 url， node 拦截到路由，并根据路由渲染对应单页面组件生成 dom 字符串，如果有数据请求，同步获取到数据后才渲染出 dom
+                字符串，插入到 html 中返回客户端，客户端很快显示出界面，至此服务端渲染完成。客户端 body 后的 script 标签加载单页面相关 js 文件，而后客户端
+                进行一次单页面同构，完成对应组件 dom 的事件绑定及那些服务器端无法实现的功能，后续的交互和程序执行就完全是一个单页面应用。</p>
+            <h3 class="sub-title">3.开发效率</h3>
+            <p class="content">开发效率相对于单页面要低一些，因为额外要处理的逻辑变得比较多，比如 node 没有 window 对象等等。也会有应用方案本身的
+                一些小坑，以及需要花成本学习 next 等框架。</p>
+            <h3 class="sub-title">4.加载速度</h3>
+            <p class="content">首次加载速度比较快，因为很快就能先呈现出页面（但是同构未完成时功能受限）。如果没有缓存的情况下，首次加载速度 SSR
+                是优于单页面的，如果 js 被缓存，反而单页面会快一点。因为 SSR 会多一点服务端的流程开销。</p>
+            <h3 class="sub-title">5.服务器压力</h3>
+            <p class="content">相比纯单页面，服务器需要增加 node 服务带来的消耗。而服务器压力会比动态页面少很多，因为仅仅是用户第一次访问的时候
+                才是服务端渲染，而后路由改变页面渲染都是被单页面控制。</p>
+            <h3 class="sub-title">6.应用场景</h3>
+            <p class="content">内容丰富，复杂交互的动态网页，对首屏加载有要求的项目，对 seo 有要求的项目（因为服务端第一次渲染的时候，已经把关键字和
+                标题渲染到响应的 html 中了，爬虫能够抓取到此静态内容，因此更利于 seo）。此方式一些适合的项目：活动模板，新闻通知类，博客系统，混合开发等等。</p>
+        </div>
+        <p class="tips-1">文章若有错误，欢迎指出，以便修改～</p>
+        <p class="tips-2">---转发请标明，并添加原文链接---</p>
+    </article>
+
+    <div class="dog">
+        <div class="head">
+            <div class="forehead"></div>
+            <div class="face"></div>
+            <div class="chin"></div>
+            <div class="eye">
+                <div class="pupil"></div>
+            </div>
+            <div class="eye right">
+                <div class="pupil"></div>
+            </div>
+            <div class="birthmark"></div>
+            <div class="ear"></div>
+            <div class="ear right"></div>
+            <div class="nose">
+                <div class="nostril"></div>
+                <div class="nostril right"></div>
+            </div>
+            <div class="mouth">
+                <div class="teen no11"></div>
+                <div class="teen no21"></div>
+                <div class="tongue"></div>
+            </div>
+        </div>
+        <div class="body">
+            <div class="arm"></div>
+            <div class="arm right"></div>
+            <div class="leg">
+                <div class="foot"></div>
+            </div>
+            <div class="leg right">
+                <div class="foot"></div>
+            </div>
+            <div class="belly"></div>
+        </div>
+    </div>
+</body>
+</html>
